@@ -17,14 +17,26 @@ public class PayService extends Service{
 
     @Override
     public IBinder onBind(Intent intent) {
-        System.out.println("服务绑定了");
+        System.out.println("服务onBind");
         return binder;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        System.out.println("服务启动了");
+        System.out.println("服务onStartCommand");
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        System.out.println("服务onUnbind");
+        return super.onUnbind(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("服务onDestroy");
     }
 
     private Binder binder = new PayAidlInterface.Stub() {
